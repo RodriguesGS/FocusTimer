@@ -45,6 +45,7 @@
         margin-top: 64px;
         gap: 8px;
         font-size: 1.2rem;
+        transition: opacity .3s;
 
         input {
             background-color: transparent;
@@ -86,7 +87,12 @@
             border: 2px solid rgba(171, 171, 171, 0.3);
             border-radius: 8px;
             padding: 20px 30px;
+            min-width: 140px;
             text-align: center;
+            
+            p {
+                letter-spacing: 5px;
+            }
 
             &.min::after {
                 content: 'MIN';
@@ -122,6 +128,28 @@
         padding: 20px;
         font-weight: 600;
         font-size: 1.1rem;
+        transition: .3s;
+
+        &:hover {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+
+        &:disabled {
+            background-color: #ABABAB;
+            cursor: not-allowed;
+        }
+
+        &.interrupt {
+            background-color: #970e0e;
+            color: #fff;
+            transition: .3s;
+
+            &:hover {
+                background-color: #be2626;
+                color: #fff;
+            }
+        }
     }
 
     a {
