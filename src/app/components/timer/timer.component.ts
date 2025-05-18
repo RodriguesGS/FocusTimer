@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { HistoryItem } from '../history/history.component';
 
 @Component({
   selector: 'app-timer',
@@ -15,12 +16,15 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class TimerComponent {
   @Input() activeWindow: 'history' | 'timer' = 'timer';
-  @Output() change = new EventEmitter<'history' | 'timer'>();
+  @Input() timerState!: { isRunning: boolean; totalSeconds: number; task: string };
 
-  min: string = '00';
-  sec: string = '00';
-  isRunning: boolean = false;
-  intervalId: any;
+  @Output() change = new EventEmitter<'history' | 'timer'>();
+  @Output() addItem = new EventEmitter<HistoryItem>();
+  @Output() updateStatus = new EventEmitter<{ index: number, status: 'Interrupted' | 'Conclued' }>();
+  @Output() startGlobalTimer = new EventEmitter<{ minutes: number, task: string }>();
+  @Output() stopGlobalTimer = new EventEmitter<void>();
+
+  currentHistoryIndex: number | null = null;
 
   form = new FormGroup({
     minutes: new FormControl<number | null>(0, [
@@ -33,47 +37,41 @@ export class TimerComponent {
     ])
   });
 
+  get min() {
+    return Math.floor(this.timerState.totalSeconds / 60).toString().padStart(2, '0');
+  }
+  get sec() {
+    return (this.timerState.totalSeconds % 60).toString().padStart(2, '0');
+  }
+
   goHistory() {
     this.change.emit('history');
   }
 
   startTimer() {
-    this.isRunning = true;
     const minValue = this.form.get('minutes')?.value ?? 0;
-    this.min = minValue.toString().padStart(2, '0');
-    this.sec = '00';
+    const taskValue = this.form.get('task')?.value || '';
 
-    let totalSeconds = (minValue * 60);
+    const item: HistoryItem = {
+      task: taskValue,
+      duration: `${minValue} min`,
+      date: new Date(),
+      status: 'In progress'
+    };
+    this.addItem.emit(item);
+    this.currentHistoryIndex = 0;
 
-    this.updateDocumentTitle();
-
-    this.intervalId = setInterval(() => {
-      if (totalSeconds <= 0) {
-        this.stopTimer();
-        return;
-      }
-
-      totalSeconds--;
-
-      this.min = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
-      this.sec = (totalSeconds % 60).toString().padStart(2, '0');
-      this.updateDocumentTitle();
-    }, 1000);
+    this.startGlobalTimer.emit({ minutes: minValue, task: taskValue });
   }
 
   stopTimer() {
-    this.isRunning = false;
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
-    this.form.reset({ minutes: 0, task: '' });
-    this.min = '00';
-    this.sec = '00';
-    document.title = 'Focus Timer'; 
-  }
+    this.stopGlobalTimer.emit();
 
-  updateDocumentTitle() {
-    document.title = `${this.min}:${this.sec} - Focus Timer`;
+    if (this.currentHistoryIndex !== null) {
+      this.updateStatus.emit({ index: this.currentHistoryIndex, status: 'Interrupted' });
+      this.currentHistoryIndex = null;
+    }
+
+    this.form.reset({ minutes: 0, task: '' });
   }
 }

@@ -1,16 +1,25 @@
 <div class="page-wrapper">
-  <div class="vertical-bar left"></div>
-  <div class="vertical-bar right"></div>
-
   <div class="container">
     @if (activeWindow === 'history') {
       <app-history
         (change)="changeWindow($event)"
+        [history]="history"
         [activeWindow]="activeWindow"
         @fade
       />
     } @else {
-      <app-timer (change)="changeWindow($event)" @fade></app-timer>
+      <app-timer
+        [timerState]="timerState"
+        (change)="changeWindow($event)"
+        (startGlobalTimer)="startGlobalTimer($event)"
+        (stopGlobalTimer)="stopGlobalTimer()"
+        (addItem)="addItem($event)"
+        (updateStatus)="updateStatus($event)"
+        @fade
+      />
+      
+      <div class="vertical-bar left"></div>
+      <div class="vertical-bar right"></div>
     }
   </div>
 </div>

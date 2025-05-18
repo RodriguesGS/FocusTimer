@@ -10,5 +10,34 @@
         </div>
     </div>
 
-    <a href="#">Code in Github</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name Task</th>
+                <th>Duration</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of history; track $index) {
+                <tr>
+                    <td>{{ item.task }}</td>
+                    <td>{{ item.duration }}</td>
+                    <td>{{ formatDate(item.date) }}</td>
+                    <td class="status">
+                        @if (item.status === 'Conclued') {
+                        <span class="conclued">Conclued</span>
+                        } @else if (item.status === 'Interrupted') {
+                        <span class="interrupted">Interrupted</span>
+                        } @else if (item.status === 'In progress') {
+                        <span class="progress">In progress</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>  
+    </table>
+
+    <a href="https://github.com/RodriguesGS/FocusTimer" target="_blank">Code in Github</a>
 </div>

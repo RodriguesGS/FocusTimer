@@ -4,7 +4,8 @@
     min-width: 900px;
     min-height: 600px;
     padding: 60px 30px 40px 30px;
-    border-radius: 10px; 
+    border-radius: 10px;
+    position: relative; 
 
     .control {
         display: flex;
@@ -39,89 +40,77 @@
         }
     }
 
-    .input-section {
+    table {
         display: flex;
-        justify-content: center;
-        margin-top: 64px;
-        gap: 8px;
-        font-size: 1.2rem;
-
-        input {
-            background-color: transparent;
-            border: 1px solid rgba(171, 171, 171, 0.3);
-            border-radius: 5px;
-            color: #fff;
-            padding: 3px 10px;
-            transition: .2s;
-
-            &[type=number]{
-                    appearance: textfield;
-                    max-width: 50px;
-                    text-align: center;
-  
-                    &::-webkit-inner-spin-button,
-                    &::-webkit-outer-spin-button {
-                        -webkit-appearance: none;
-                        margin: 0;
-                    }
-            }
-
-            &:focus {
-                outline: none;
-                border: 1px solid #fff;
-            }
-        }
-    }
-
-    .timer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
+        flex-direction: column;
         margin-top: 60px;
-        font-size: 3.2rem;
-        font-weight: 500;
+        width: 100%;
+        border-collapse: collapse;
 
-        .counter {
-            border: 2px solid rgba(171, 171, 171, 0.3);
-            border-radius: 8px;
-            padding: 20px 30px;
-            text-align: center;
+        thead {
+            background-color: #000;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 200;
 
-            &.min::after {
-                content: 'MIN';
-                font-size: .8rem;
-                display: block;
-                color: #ABABAB;
-                margin-top: -10px;
-            }
-
-            &.sec::after {
-                content: 'SEC';
-                font-size: .8rem;
-                display: block;
-                color: #ABABAB;
-                margin-top: -10px;
+            tr {
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                border-right: 1px solid #fff;
+                border-left: 1px solid #fff;
+                padding: 10px;
+                text-align: left;
             }
         }
-    }
 
-    button {
-        background-color: #fff;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 60px auto;
-        border: none;
-        width: 120px;
-        border-radius: 10px;
-        color: #111;
-        text-align: center;
-        height: 40px;
-        padding: 20px;
-        font-weight: 600;
-        font-size: 1.1rem;
+        tbody {
+            width: 100%;
+            background-color: #000;
+            font-size: .8rem;
+            color: #ABABAB;
+
+            tr {
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                border-right: 1px solid #fff;
+                border-left: 1px solid #fff;
+                padding: 10px;
+                text-align: left;
+                margin-top: 5px;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    &.interrupted::before {
+                        content: '';
+                        background-color: #cf2424;
+                        width: 10px;
+                        border-radius: 50%;
+                        height: 10px;
+                    }
+
+                    &.progress::before {
+                        content: '';
+                        display: block;
+                        background-color: #cfcc24;
+                        width: 10px;
+                        border-radius: 50%;
+                        height: 10px;
+                    }
+
+                    &.conclued::before {
+                        content: '';
+                        display: block;
+                        background-color: #46cf24;
+                        width: 10px;
+                        border-radius: 50%;
+                        height: 10px;
+                    }
+                }
+            }
+        }
     }
 
     a {
@@ -132,6 +121,11 @@
         margin: 0 auto;
         color: #fff;
         text-decoration: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0 auto;
+        bottom: 5%;
 
         &::after {
             content: "";
