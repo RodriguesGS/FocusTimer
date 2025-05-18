@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -9,5 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './timer.component.scss'
 })
 export class TimerComponent {
+  @Input() activeWindow: 'history' | 'timer' = 'timer';
+  @Output() change = new EventEmitter<'history' | 'timer'>();
 
+  goHistory() {
+    this.change.emit('history');
+  }
 }

@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="control">
+        <div (click)="goTimer()" class="btn">
+            <mat-icon class="btn-icon">schedule</mat-icon>
+            <span>Timer</span>
+        </div>
+        <div class="btn" [class.active]="activeWindow === 'history'">
+            <mat-icon class="btn-icon">receipt_long</mat-icon>
+            <span>History</span>
+        </div>
+    </div>
+
+    <a href="#">Code in Github</a>
+</div>

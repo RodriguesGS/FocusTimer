@@ -3,7 +3,14 @@
   <div class="vertical-bar right"></div>
 
   <div class="container">
-    <!-- Seu componente/card aqui -->
-    <app-timer></app-timer>
+    @if (activeWindow === 'history') {
+      <app-history
+        (change)="changeWindow($event)"
+        [activeWindow]="activeWindow"
+        @fade
+      />
+    } @else {
+      <app-timer (change)="changeWindow($event)" @fade></app-timer>
+    }
   </div>
 </div>
