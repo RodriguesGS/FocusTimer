@@ -47,6 +47,27 @@
         margin-top: 60px;
         width: 100%;
         border-collapse: collapse;
+        overflow-y: auto;
+        max-height: 300px;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #2d2d2d;
+            border-radius: 10px;
+        }
+          
+        &::-webkit-scrollbar-thumb {
+            background: #626262;
+            border-radius: 10px;
+
+            &:hover {
+                background-color: #000;
+            }
+        }
 
         thead {
             background-color: #000;
