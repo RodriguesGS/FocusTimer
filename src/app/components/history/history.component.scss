@@ -1,5 +1,6 @@
+@use "../../../styles/variables" as *;
+
 .container {
-    color: #fff;
     background-color: rgba(0, 0, 0, 0.7);
     min-width: 900px;
     min-height: 600px;
@@ -21,7 +22,7 @@
         .btn {
             display: flex;
             align-items: center;
-            color: #ABABAB;
+            color: $main-gray;
             cursor: pointer;
             gap: 11px;
             min-width: 100px;
@@ -29,12 +30,12 @@
             transition: .2s;
 
             &:hover {
-                color: #fff;
+                color: $white-color;
             }
 
             &.active {
-                background: #000;
-                color: #fff;
+                background: $black-color;
+                color: $white-color;
                 border-radius: 5px;
             }
         }
@@ -55,9 +56,9 @@
 
             tr {
                 display: grid;
-                grid-template-columns: 2fr 1fr 1fr 1fr;
-                border-right: 1px solid #fff;
-                border-left: 1px solid #fff;
+                grid-template-columns: 3fr 1fr 2fr 1fr;
+                border-right: 2px solid $white-color;
+                border-left: 2px solid $white-color;
                 padding: 10px;
                 text-align: left;
             }
@@ -67,13 +68,13 @@
             width: 100%;
             background-color: #000;
             font-size: .8rem;
-            color: #ABABAB;
+            color: $main-gray;
 
             tr {
                 display: grid;
-                grid-template-columns: 2fr 1fr 1fr 1fr;
-                border-right: 1px solid #fff;
-                border-left: 1px solid #fff;
+                grid-template-columns: 3fr 1fr 2fr 1fr;
+                border-right: 2px solid $white-color;
+                border-left: 2px solid $white-color;
                 padding: 10px;
                 text-align: left;
                 margin-top: 5px;
@@ -100,7 +101,7 @@
                         height: 10px;
                     }
 
-                    &.conclued::before {
+                    &.concluded::before {
                         content: '';
                         display: block;
                         background-color: #46cf24;
@@ -119,7 +120,7 @@
         align-items: center;
         width: fit-content;
         margin: 0 auto;
-        color: #fff;
+        color: $white-color;
         text-decoration: none;
         position: absolute;
         left: 50%;
@@ -132,7 +133,7 @@
             display: block;
             width: 30%; 
             height: 2px;
-            background-color: #fff;
+            background-color: $white-color;
             transition: 0.3s;
         }
 
@@ -140,5 +141,4 @@
             width: 100%;
         }
     }
-
 }

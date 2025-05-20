@@ -20,11 +20,9 @@ export class TimerComponent {
 
   @Output() change = new EventEmitter<'history' | 'timer'>();
   @Output() addItem = new EventEmitter<HistoryItem>();
-  @Output() updateStatus = new EventEmitter<{ index: number, status: 'Interrupted' | 'Conclued' }>();
+  @Output() updateStatus = new EventEmitter<{ index: number, status: 'Interrupted' | 'Concluded' }>();
   @Output() startGlobalTimer = new EventEmitter<{ minutes: number, task: string }>();
   @Output() stopGlobalTimer = new EventEmitter<void>();
-
-  currentHistoryIndex: number | null = null;
 
   form = new FormGroup({
     minutes: new FormControl<number | null>(0, [
@@ -33,7 +31,7 @@ export class TimerComponent {
     ]),
     task: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(3),
+      Validators.minLength(1),
     ])
   });
 
@@ -59,7 +57,6 @@ export class TimerComponent {
       status: 'In progress'
     };
     this.addItem.emit(item);
-    this.currentHistoryIndex = 0;
 
     this.startGlobalTimer.emit({ minutes: minValue, task: taskValue });
   }
@@ -67,11 +64,6 @@ export class TimerComponent {
   stopTimer() {
     this.stopGlobalTimer.emit();
 
-    if (this.currentHistoryIndex !== null) {
-      this.updateStatus.emit({ index: this.currentHistoryIndex, status: 'Interrupted' });
-      this.currentHistoryIndex = null;
-    }
-
-    this.form.reset({ minutes: 0, task: '' });
+    this.form.reset();
   }
 }

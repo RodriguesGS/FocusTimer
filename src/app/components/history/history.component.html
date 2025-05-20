@@ -1,4 +1,4 @@
-<div class="container">
+<main class="container">
     <div class="control">
         <div (click)="goTimer()" class="btn">
             <mat-icon class="btn-icon">schedule</mat-icon>
@@ -26,12 +26,12 @@
                     <td>{{ item.duration }}</td>
                     <td>{{ formatDate(item.date) }}</td>
                     <td class="status">
-                        @if (item.status === 'Conclued') {
-                        <span class="conclued">Conclued</span>
+                        @if (item.status === 'Concluded') {
+                            <span class="concluded">Concluded</span>
                         } @else if (item.status === 'Interrupted') {
-                        <span class="interrupted">Interrupted</span>
+                            <span class="interrupted">Interrupted</span>
                         } @else if (item.status === 'In progress') {
-                        <span class="progress">In progress</span>
+                            <span class="progress">In progress</span>
                         }
                     </td>
                 </tr>
@@ -40,4 +40,4 @@
     </table>
 
     <a href="https://github.com/RodriguesGS/FocusTimer" target="_blank">Code in Github</a>
-</div>
+</main>

@@ -1,68 +1,62 @@
+@use "../styles/variables" as *;
+
 :host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .page-wrapper {
-        position: relative;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: transparent;
+    .vertical-bar {
+        position: absolute;
+        top: 52%;
+        transform: translateY(-50%);
+        width: 2px;
+        height: 80px;
+        background-color: $white-color;
+        animation: glow 3s ease-in-out infinite;
 
-        .vertical-bar {
-            position: absolute;
-            top: 52%;
-            transform: translateY(-50%);
+        &::before, &::after {
+            content: "";
+            display: block;
             width: 2px;
-            height: 80px;
-            background-color: #fff;
-            opacity: 0.8;
-            animation: glow 2s ease-in-out infinite;
-
-            &::before, &::after {
-                content: "";
-                display: block;
-                width: 2px;
-                height: 10px;
-                background-color: #fff;
-                position: absolute;
-                left: 0;
-            }
-
-            &::before {
-                top: -25px;
-            }
-
-            &::after {
-                bottom: -25px;
-            }
-
-            &.left {
-                left: 30px;
-            }
-
-            &.right {
-                right: 30px;
-            }
+            height: 10px;
+            background-color: $white-color;
+            position: absolute;
+            left: 0;
         }
 
-        .container {
-            z-index: 2;
-            position: relative;
+        &::before {
+            top: -20px;
         }
+
+        &::after {
+            bottom: -20px;
+        }
+
+        &.left {
+            left: 30px;
+        }
+
+        &.right {
+            right: 30px;
+        }
+    }
+
+    .container {
+        z-index: 2;
+        position: relative;
     }
 }
 
 @keyframes glow {
     0%, 100% {
-        opacity: 0.5;
-        filter: drop-shadow(0 0 4px #fff);
+        opacity: 0.2;
+        filter: drop-shadow(0 0 4px $white-color);
     }
+    
     50% {
         opacity: 1;
-        filter: drop-shadow(0 0 10px #fff);
+        filter: drop-shadow(0 0 10px $white-color);
     }
 }

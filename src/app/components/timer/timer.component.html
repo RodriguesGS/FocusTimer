@@ -1,4 +1,4 @@
-<div class="container">
+<main class="container">
     <div class="control">
         <div class="btn" [class.active]="activeWindow === 'timer'">
             <mat-icon class="btn-icon">schedule</mat-icon>
@@ -12,8 +12,8 @@
 
     <form [formGroup]="form">
         <div class="input-section" [style.opacity]="timerState.isRunning ? 0 : 1">
-            <span>I will spend</span>
-            <input type="number" formControlName="minutes" max="60">
+            <label for="minutes">I will spend</label>
+            <input id="minutes" type="number" formControlName="minutes" max="60">
             <span>minutes working on</span>
             <input type="text" formControlName="task">
         </div>
@@ -32,10 +32,8 @@
             <button (click)="stopTimer()"  class="interrupt">Interrupt</button>
         } @else {
             <button (click)="startTimer()" [disabled]="form.invalid">Start</button>
-        }
-
-        
+        }   
     </form>
 
     <a href="https://github.com/RodriguesGS/FocusTimer" target="_blank">Code in Github</a>
-</div>
+</main>

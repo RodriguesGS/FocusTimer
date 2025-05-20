@@ -6,7 +6,10 @@ import { animate, style, transition, trigger } from '@angular/animations';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [TimerComponent, HistoryComponent],
+  imports: [
+    TimerComponent,
+    HistoryComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   animations: [
@@ -26,41 +29,55 @@ export class AppComponent {
     isRunning: false,
     totalSeconds: 0,
     task: '',
-    intervalId: null as any
+    intervalId: null as number | null
+  };
+
+  startTimer({ minutes, task }: { minutes: number, task: string }) {
+    this.timerState.isRunning = true;
+    this.timerState.totalSeconds = minutes * 60;
+    this.timerState.task = task;
+
+    if (this.timerState.intervalId) {
+      clearInterval(this.timerState.intervalId);
+    }
+
+    this.timerState.intervalId = setInterval(() => {
+      if (this.timerState.totalSeconds > 0) {
+        this.timerState.totalSeconds--;
+
+        const min = Math.floor(this.timerState.totalSeconds / 60).toString().padStart(2, '0');
+        const sec = (this.timerState.totalSeconds % 60).toString().padStart(2, '0');
+
+        document.title = `${min}:${sec} |  Focus Timer`;
+      } else {
+        this.timerState.isRunning = false;
+
+        if (this.timerState.intervalId) {
+          clearInterval(this.timerState.intervalId);
+          this.timerState.intervalId = null;
+        }
+
+        document.title = 'Focus Timer';
+
+        if (this.history.length > 0 && this.history[0].status === 'In progress') {
+          this.history[0].status = 'Concluded';
+        }   
+      }
+    }, 1000) as unknown as number;
   }
 
-startGlobalTimer({ minutes, task }: { minutes: number, task: string }) {
-  this.timerState.isRunning = true;
-  this.timerState.totalSeconds = minutes * 60;
-  this.timerState.task = task;
-  if (this.timerState.intervalId) clearInterval(this.timerState.intervalId);
-
-  this.timerState.intervalId = setInterval(() => {
-    if (this.timerState.totalSeconds > 0) {
-      this.timerState.totalSeconds--;
-      const min = Math.floor(this.timerState.totalSeconds / 60).toString().padStart(2, '0');
-      const sec = (this.timerState.totalSeconds % 60).toString().padStart(2, '0');
-      document.title = `${min}:${sec} - Focus Timer`;
-    } else {
-      this.timerState.isRunning = false;
-      clearInterval(this.timerState.intervalId);
-      this.timerState.intervalId = null;
-      document.title = 'Focus Timer';
-
-      if (this.history.length > 0 && this.history[0].status === 'In progress') {
-        this.history[0].status = 'Conclued';
-      }
-    }
-  }, 1000);
-}
-
-  stopGlobalTimer() {
+  stopTimer() {
     this.timerState.isRunning = false;
+
+    this.timerState.totalSeconds = 0;
+
     if (this.timerState.intervalId) {
       clearInterval(this.timerState.intervalId);
       this.timerState.intervalId = null;
     }
+
     this.history[0].status = 'Interrupted';
+
     document.title = 'Focus Timer';
   }
 
@@ -72,9 +89,9 @@ startGlobalTimer({ minutes, task }: { minutes: number, task: string }) {
     this.history.unshift(item);
   }
 
-  updateStatus(event: { index: number, status: 'Interrupted' | 'Conclued' }) {
+  updateStatus(event: { index: number, status: 'Interrupted' | 'Concluded' }) {
     if (this.history[event.index]) {
       this.history[event.index].status = event.status;
-    }
+    }   
   }
 }
