@@ -1,16 +1,13 @@
-# ⏱️ Focus Timer 
+# ⏱️ Focus Timer
 
 [PROJECT__BADGE]: https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project
 [PROJECT__URL]: https://focus-timer-gamma.vercel.app
-
-
 
 A modern and minimalist focus timer built with Angular. Helps you stay productive using a simple timeboxing technique — track your tasks, stay focused, and see your progress.
 
 [![project][PROJECT__BADGE]][PROJECT__URL]
 
 ## Tech Stack
-
 
 [![My Skills](https://skillicons.dev/icons?i=angular,ts,scss)](https://skillicons.dev)
 

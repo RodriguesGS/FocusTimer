@@ -1,50 +1,50 @@
 @use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mixins;
 
 .container {
     background-color: #000000b3;
-    min-width: 900px;
-    min-height: 600px;
-    padding: 60px 30px 40px 30px;
-    border-radius: 10px; 
+    width: 100%;
+    height: 100%;
+    padding: 40px 16px;
+    min-height: 100vh;
 
     .control {
         display: flex;
-        justify-content: space-around;
-        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
         background-color: #464646;
-        max-width: 213px;
-        padding: 5px;
+        padding: 10px 0;
         border-radius: 10px;
         font-weight: 500;
-        font-size: .9rem;
+        font-size: 1rem;
+    }
 
-        .btn {
-            display: flex;
-            align-items: center;
-            color: $main-gray;
-            cursor: pointer;
-            gap: 11px;
-            min-width: 100px;
-            padding: 4px;
-            transition: .2s;
+    .btn {
+        display: flex;
+        align-items: center;
+        color: $main-gray;
+        cursor: pointer;
+        padding: 10px 40px;
+        gap: 8px;
+        border-radius: 10px;
+        transition: .2s;
 
-            &:hover {
-                color: $white-color;
-            }
+        &:hover { color: $white-color; }
 
-            &.active {
-                background: $black-color;
-                color: $white-color;
-                border-radius: 5px;
-            }
+        &.active {
+            background: $black-color;
+            color: $white-color;
+            border-radius: 5px;
         }
     }
 
     .input-section {
         display: flex;
         justify-content: center;
-        margin-top: 64px;
-        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 100px;
+        gap: 10px;
         font-size: 1.2rem;
         transition: .3s;
 
@@ -53,13 +53,12 @@
             border: 2px solid rgba(171, 171, 171, 0.3);
             border-radius: 5px;
             color: $white-color;
-            padding: 3px 10px;
-            transition: .2s;
+            padding: 6px 12px;
             font-size: 1.2rem;
 
-            &[type=number]{
+            &[type=number] {
                 appearance: textfield;
-                max-width: 50px;
+                max-width: 60px;
                 text-align: center;
 
                 &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
@@ -76,58 +75,48 @@
     }
 
     .timer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        margin-top: 60px;
-        font-size: 3.2rem;
+        @include mixins.flex-center;
+        gap: 8px;
+        margin-top: 100px;
+        font-size: 3.4rem;
         font-weight: 500;
 
         .counter {
             border: 2px solid rgba(171, 171, 171, 0.3);
             border-radius: 8px;
-            padding: 20px 30px;
+            padding: 18px 24px;
             min-width: 140px;
             text-align: center;
-            
-            p {
-                letter-spacing: 5px;
-            }
 
-            &.min::after {
-                content: 'MIN';
-                font-size: .8rem;
+            p { letter-spacing: 4px; }
+
+            &.min::after, &.sec::after {
+                font-size: 1rem;
                 display: block;
                 color: $main-gray;
-                margin-top: -10px;
+                margin-top: -6px;
             }
 
-            &.sec::after {
-                content: 'SEC';
-                font-size: .8rem;
-                display: block;
-                color: $main-gray;
-                margin-top: -10px;
-            }
+            &.min::after { content: 'MIN'; }
+
+            &.sec::after { content: 'SEC'; }
         }
     }
 
     button {
         background-color: $white-color;
         cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 60px auto;
+        @include mixins.flex-center;
+        margin: 48px auto;
         border: none;
-        width: 120px;
+        width: 100%;
+        max-width: 180px;
         border-radius: 10px;
         color: $black-color;
-        height: 40px;
-        padding: 20px;
+        height: 44px;
+        padding: 10px;
         font-weight: 600;
-        font-size: 1.1rem;
+        font-size: 1rem;
         transition: .3s;
 
         &:hover {
@@ -143,12 +132,8 @@
         &.interrupt {
             background-color: #970e0e;
             color: $white-color;
-            transition: .3s;
 
-            &:hover {
-                background-color: #be2626;
-                color: $white-color;
-            }
+            &:hover { background-color: #be2626; }
         }
     }
 
@@ -156,16 +141,16 @@
         width: fit-content;
         color: $white-color;
         text-decoration: none;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 5%;
+        position: relative;
+        margin: 100px auto 0;
+        display: block;
+        text-align: center;
 
         &::after {
             content: "";
             display: block;
             margin: 0 auto;
-            width: 30%; 
+            width: 40%; 
             height: 2px;
             background-color: $white-color;
             transition: 0.3s;
@@ -175,4 +160,13 @@
             width: 100%;
         }
     }
+
+    @include mixins.respond-md {
+        padding: 60px 40px;
+
+        .control {
+            padding: 8px;
+        }
+    }
 }
+

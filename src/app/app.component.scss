@@ -1,18 +1,38 @@
 @use "../styles/variables" as *;
+@use "../styles/mixins" as mixins;
 
 :host {
-    position: relative;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
+    .container {
+        width: 100%;
+        
+    }
+
+
+
+}
+
+@keyframes glow {
+    0%, 100% {
+        opacity: 0.2;
+        filter: drop-shadow(0 0 4px $white-color);
+    }
+    
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px $white-color);
+    }
+}
+
+
+    /*
     .vertical-bar {
         position: absolute;
         top: 52%;
         transform: translateY(-50%);
         width: 2px;
-        height: 80px;
+        height: 60px;
         background-color: $white-color;
         animation: glow 3s ease-in-out infinite;
 
@@ -43,20 +63,4 @@
         }
     }
 
-    .container {
-        z-index: 2;
-        position: relative;
-    }
-}
-
-@keyframes glow {
-    0%, 100% {
-        opacity: 0.2;
-        filter: drop-shadow(0 0 4px $white-color);
-    }
-    
-    50% {
-        opacity: 1;
-        filter: drop-shadow(0 0 10px $white-color);
-    }
-}
+    */

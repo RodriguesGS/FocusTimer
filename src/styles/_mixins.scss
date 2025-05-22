@@ -1,0 +1,18 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin respond-md {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin respond-lg {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}
+
