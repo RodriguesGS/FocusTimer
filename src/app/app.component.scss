@@ -4,13 +4,45 @@
 :host {
     height: 100vh;
 
-    .container {
-        width: 100%;
-        
+    @include mixins.respond-lg {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .container {
+            z-index: 2;
+            position: relative;
+        }
+
+        .vertical-bar {
+            position: absolute;
+            top: 52%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 60px;
+            background-color: $white-color;
+            animation: glow 3s ease-in-out infinite;
+
+            &::before, &::after {
+                content: "";
+                display: block;
+                width: 2px;
+                height: 10px;
+                background-color: $white-color;
+                position: absolute;
+                left: 0;
+            }
+
+            &::before { top: -20px; }
+
+            &::after { bottom: -20px; }
+
+            &.left { left: 30px; }
+
+            &.right { right: 30px; }
+        }
     }
-
-
-
 }
 
 @keyframes glow {
@@ -24,43 +56,3 @@
         filter: drop-shadow(0 0 10px $white-color);
     }
 }
-
-
-    /*
-    .vertical-bar {
-        position: absolute;
-        top: 52%;
-        transform: translateY(-50%);
-        width: 2px;
-        height: 60px;
-        background-color: $white-color;
-        animation: glow 3s ease-in-out infinite;
-
-        &::before, &::after {
-            content: "";
-            display: block;
-            width: 2px;
-            height: 10px;
-            background-color: $white-color;
-            position: absolute;
-            left: 0;
-        }
-
-        &::before {
-            top: -20px;
-        }
-
-        &::after {
-            bottom: -20px;
-        }
-
-        &.left {
-            left: 30px;
-        }
-
-        &.right {
-            right: 30px;
-        }
-    }
-
-    */
