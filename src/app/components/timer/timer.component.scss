@@ -157,9 +157,7 @@
             transition: 0.3s;
         }
 
-        &:hover::after {
-            width: 100%;
-        }
+        &:hover::after { width: 100%; }
     }
 
     @include mixins.respond-md {
@@ -167,7 +165,6 @@
 
         .control {
             display: flex;
-            font-size: .9rem;
             padding: 8px;
         }
     }

@@ -10,34 +10,36 @@
         </div>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Name Task</th>
-                <th>Duration</th>
-                <th>Date</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (item of history; track $index) {
+    <div class="table-wrapper">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ item.task }}</td>
-                    <td>{{ item.duration }}</td>
-                    <td>{{ formatDate(item.date) }}</td>
-                    <td class="status">
-                        @if (item.status === 'Concluded') {
-                            <span class="concluded">Concluded</span>
-                        } @else if (item.status === 'Interrupted') {
-                            <span class="interrupted">Interrupted</span>
-                        } @else if (item.status === 'In progress') {
-                            <span class="progress">In progress</span>
-                        }
-                    </td>
+                    <th>Name Task</th>
+                    <th>Duration</th>
+                    <th>Date</th>
+                    <th>Status</th>
                 </tr>
-            }
-        </tbody>  
-    </table>
+            </thead>
+            <tbody>
+                @for (item of history; track $index) {
+                    <tr>
+                        <td>{{ item.task }}</td>
+                        <td>{{ item.duration }}</td>
+                        <td>{{ formatDate(item.date) }}</td>
+                        <td class="status">
+                            @if (item.status === 'Concluded') {
+                                <span class="concluded">Concluded</span>
+                            } @else if (item.status === 'Interrupted') {
+                                <span class="interrupted">Interrupted</span>
+                            } @else if (item.status === 'In progress') {
+                                <span class="progress">In progress</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>  
+        </table>
+    </div>
 
     <a href="https://github.com/RodriguesGS/FocusTimer" target="_blank">Code in Github</a>
 </main>

@@ -1,39 +1,37 @@
 @use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mixins;
 
-
-/*
 .container {
-    background-color: rgba(0, 0, 0, 0.7);
-    min-width: 900px;
-    min-height: 600px;
-    padding: 60px 30px 40px 30px;
-    border-radius: 10px;
-    position: relative; 
+    background-color: #000000b3;
+    width: 100%;
+    height: 100%;
+    padding: 40px 16px;
+    min-height: 100vh;
 
     .control {
         display: flex;
-        justify-content: space-around;
-        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
         background-color: #464646;
-        max-width: 213px;
-        padding: 5px;
+        padding: 10px 0;
         border-radius: 10px;
         font-weight: 500;
         font-size: .9rem;
+        max-width: 350px;
+        margin: 0 auto;
 
         .btn {
             display: flex;
             align-items: center;
             color: $main-gray;
             cursor: pointer;
-            gap: 11px;
-            min-width: 100px;
-            padding: 4px;
+            padding: 10px 40px;
+            gap: 8px;
+            border-radius: 10px;
             transition: .2s;
 
-            &:hover {
-                color: $white-color;
-            }
+            &:hover { color: $white-color; }
 
             &.active {
                 background: $black-color;
@@ -43,14 +41,10 @@
         }
     }
 
-    table {
-        display: flex;
-        flex-direction: column;
-        margin-top: 60px;
+    .table-wrapper {
         width: 100%;
-        border-collapse: collapse;
-        overflow-y: auto;
-        max-height: 300px;
+        overflow-x: auto;
+        margin-top: 100px;
 
         &::-webkit-scrollbar {
             width: 8px;
@@ -61,76 +55,101 @@
             background: #2d2d2d;
             border-radius: 10px;
         }
-          
+        
         &::-webkit-scrollbar-thumb {
             background: #626262;
             border-radius: 10px;
 
-            &:hover {
+            &:hover { background-color: #000; }
+        }
+
+        table {
+            min-width: 800px;
+            width: 100%;
+            border-collapse: collapse;
+
+            thead {
                 background-color: #000;
+                font-size: .9rem;
+                font-weight: 200;
+
+                tr {
+                    display: grid;
+                    grid-template-columns: 3fr 1fr 2fr 1fr;
+                    border-right: 2px solid $white-color;
+                    border-left: 2px solid $white-color;
+                    padding: 10px;
+                    text-align: left;
+                }
             }
-        }
 
-        thead {
-            background-color: #000;
-            width: 100%;
-            font-size: 1rem;
-            font-weight: 200;
+            tbody {
+                display: block;
+                max-height: 250px;
+                overflow-y: auto;
+                width: 100%;
+                background-color: #000;
+                font-size: .8rem;
+                color: $main-gray;
 
-            tr {
-                display: grid;
-                grid-template-columns: 3fr 1fr 2fr 1fr;
-                border-right: 2px solid $white-color;
-                border-left: 2px solid $white-color;
-                padding: 10px;
-                text-align: left;
-            }
-        }
+                &::-webkit-scrollbar {
+                    width: 8px;
+                    height: 10px;
+                }
 
-        tbody {
-            width: 100%;
-            background-color: #000;
-            font-size: .8rem;
-            color: $main-gray;
+                &::-webkit-scrollbar-track {
+                    background: #2d2d2d;
+                    border-radius: 10px;
+                }
+                
+                &::-webkit-scrollbar-thumb {
+                    background: #626262;
+                    border-radius: 10px;
 
-            tr {
-                display: grid;
-                grid-template-columns: 3fr 1fr 2fr 1fr;
-                border-right: 2px solid $white-color;
-                border-left: 2px solid $white-color;
-                padding: 10px;
-                text-align: left;
-                margin-top: 5px;
+                    &:hover { background-color: #000; }
+                }
 
-                span {
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
+                tr {
+                    display: grid;
+                    grid-template-columns: 3fr 1fr 2fr 1fr;
+                    border-right: 2px solid $white-color;
+                    border-left: 2px solid $white-color;
+                    padding: 10px;
+                    text-align: left;
+                    margin-top: 5px;
+                    width: 100%;
 
-                    &.interrupted::before {
-                        content: '';
-                        background-color: #cf2424;
-                        width: 10px;
-                        border-radius: 50%;
-                        height: 10px;
-                    }
+                    span {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
 
-                    &.progress::before {
-                        content: '';
-                        display: block;
-                        background-color: #cfcc24;
-                        width: 10px;
-                        border-radius: 50%;
-                        height: 10px;
-                    }
+                        &.interrupted::before {
+                            content: '';
+                            display: inline-block;
+                            background-color: #cf2424;
+                            width: 10px;
+                            border-radius: 50%;
+                            height: 10px;
+                        }
 
-                    &.concluded::before {
-                        content: '';
-                        display: block;
-                        background-color: #46cf24;
-                        width: 10px;
-                        border-radius: 50%;
-                        height: 10px;
+                        &.progress::before {
+                            content: '';
+                            display: inline-block;
+                            background-color: #cfcc24;
+                            width: 10px;
+                            border-radius: 50%;
+                            height: 10px;
+                        }
+
+                        &.concluded::before {
+                            content: '';
+                            display: inline-block;
+                            background-color: #46cf24;
+                            width: 10px;
+                            border-radius: 50%;
+                            height: 10px;
+                        }
                     }
                 }
             }
@@ -138,31 +157,50 @@
     }
 
     a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         width: fit-content;
-        margin: 0 auto;
         color: $white-color;
         text-decoration: none;
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
-        margin: 0 auto;
         bottom: 5%;
+        transform: translateX(-50%);
 
         &::after {
             content: "";
             display: block;
-            width: 30%; 
+            margin: 0 auto;
+            width: 40%; 
             height: 2px;
             background-color: $white-color;
             transition: 0.3s;
         }
 
-        &:hover::after {
-            width: 100%;
+        &:hover::after { width: 100%; }
+    }
+
+    @include mixins.respond-md {
+        padding: 60px 40px;
+
+        .control {
+            display: flex;
+            padding: 8px;
+        }
+    }
+
+    @include mixins.respond-lg {
+        min-width: 900px;
+        min-height: 500px;
+        border-radius: 10px; 
+
+        .control {
+            padding: 8px 0;
+            max-width: 250px;
+            font-size: 1rem;
+
+            .btn {
+                padding: 10px 20px;
+                font-size: .8rem;
+            }
         }
     }
 }
-*/
