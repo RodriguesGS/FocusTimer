@@ -189,7 +189,7 @@
 
     @include mixins.respond-lg {
         min-width: 900px;
-        min-height: 500px;
+        min-height: 600px;
         border-radius: 10px; 
 
         .control {
@@ -201,6 +201,10 @@
                 padding: 10px 20px;
                 font-size: .8rem;
             }
+        }
+
+        .table-wrapper {
+            margin-top: 60px;
         }
     }
 }
