@@ -1,22 +1,41 @@
 # ⏱️ Focus Timer
 
-[PROJECT__BADGE]: https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project
-[PROJECT__URL]: https://focus-timer-gamma.vercel.app
+[![project](https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project)](https://focus-timer-gamma.vercel.app)
 
-A modern and minimalist focus timer built with Angular. Helps you stay productive using a simple timeboxing technique — track your tasks, stay focused, and see your progress.
+A modern and minimalist focus timer built with Angular.  
+Helps you stay productive using the **timeboxing** technique — track your tasks, stay focused, and see your progress.
 
-[![project][PROJECT__BADGE]][PROJECT__URL]
+---
 
-## Tech Stack
+## 🚀 Demo
+
+👉 [Click here to try the project](https://focus-timer-gamma.vercel.app)
+
+---
+
+## 🧰 Tech Stack
 
 [![My Skills](https://skillicons.dev/icons?i=angular,ts,scss)](https://skillicons.dev)
 
-## Features
+- **Angular 18**  
+- **TypeScript**
+- **SCSS (modular and responsive styling)**
 
-- Countdown timer with task input
-- History of focus session (with status: In progress, Interrupted and Concluded)
+---
 
-## Contribute
+## ✨ Features
 
-1. **Clone project**: `git clone https://github.com/RodriguesGS/FocusTimer.git`
-2. **Create feature/branch**: `git checkout -b feature/NAME`
+✅ Countdown timer with editable task name  
+✅ Session history (In progress, Interrupted, Concluded)  
+✅ Fully responsive for mobile and desktop  
+✅ Clean and accessible UI  
+
+---
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/RodriguesGS/FocusTimer.git
+cd FocusTimer
+npm install
+ng serve
