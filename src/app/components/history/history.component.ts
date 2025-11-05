@@ -8,13 +8,12 @@ export interface HistoryItem {
   status: 'Concluded' | 'Interrupted' | 'In progress';
 }
 @Component({
-  selector: 'app-history',
-  standalone: true,
-  imports: [ 
-    MatIconModule, 
-  ],
-  templateUrl: './history.component.html',
-  styleUrl: './history.component.scss'
+    selector: 'app-history',
+    imports: [
+        MatIconModule,
+    ],
+    templateUrl: './history.component.html',
+    styleUrl: './history.component.scss'
 })
 export class HistoryComponent {
   @Input() activeWindow: 'history' | 'timer' = 'history';

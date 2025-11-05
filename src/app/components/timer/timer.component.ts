@@ -4,15 +4,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { HistoryItem } from '../history/history.component';
 
 @Component({
-  selector: 'app-timer',
-  standalone: true,
-  imports: [
-    MatIconModule, 
-    ReactiveFormsModule,
-    FormsModule
-  ],
-  templateUrl: './timer.component.html',
-  styleUrl: './timer.component.scss'
+    selector: 'app-timer',
+    imports: [
+        MatIconModule,
+        ReactiveFormsModule,
+        FormsModule
+    ],
+    templateUrl: './timer.component.html',
+    styleUrl: './timer.component.scss'
 })
 export class TimerComponent {
   @Input() activeWindow: 'history' | 'timer' = 'timer';
